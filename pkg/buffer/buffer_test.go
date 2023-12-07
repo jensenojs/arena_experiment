@@ -21,6 +21,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// GOEXPERIMENT='cgocheck2' go test ./...
 const (
 	NCPU  = 100
 	Loop  = 10

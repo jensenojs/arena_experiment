@@ -3,6 +3,7 @@
 build: check-go
 # $(CGO_OPTS) go build  $(RACE_OPT) $(GOLDFLAGS) -o $(BIN_NAME) ./cmd/mo-service
 	GOEXPERIMENT=cgocheck2 go build main.go
+	./main
 
 .PHONY: check-go
 # 检查Golang是否安装，以及版本是否为1.21以上
@@ -19,3 +20,8 @@ check-go:
 	else \
 		echo "错误：Golang版本为 $(GO_VERSION_NUMBER)。请安装1.21以上的版本。" && exit 1; \
 	fi
+
+
+.PHONY: clean
+clean: 
+	rm main

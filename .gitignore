@@ -1,0 +1,17 @@
+.idea/
+.vscode/
+*.o
+*.a
+*.exe
+*.lib
+*.swp
+y.go
+*.output
+**/.DS_Store
+**/cover.out
+*.iml
+tags
+coverage.txt
+out.txt
+vendor/
+main
