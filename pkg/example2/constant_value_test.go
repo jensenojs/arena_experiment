@@ -12,25 +12,30 @@
 // see the license for the specific language governing permissions and
 // limitations under the license.
 
-package bufstring
+package example2
 
 import (
 	"arena_experiment/pkg/buffer"
-	"fmt"
+	"go/constant"
 	"testing"
 )
 
-func TestString(t *testing.T) {
+// 无法通过buffer alloc来获得的对象
+func Example2() {
+// 	buf := buffer.New()
+// 	defer buf.Free()
+
+// 	// p1 := NewPerson(1, buf)
+// 	// p2 := NewPerson(2, buf)
+
+// 	p1.Friend = p2
+}
+
+func TestConstantValue(t *testing.T) {
 	buf := buffer.New()
 	defer buf.Free()
-	n := "jensen"
 
-	p := NewPerson(n, 23, buf)
-
-	p2 := &Person{}
-
-	p.Parent = p2
-
-	fmt.Println(p.Name)
-	fmt.Println(p.Age)
+	id := constant.MakeInt64(1)
+	_ = NewPerson(id, buf)
+	// fatal error: unpinned Go pointer stored into non-Go memory !
 }

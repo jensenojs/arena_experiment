@@ -12,22 +12,30 @@
 // see the license for the specific language governing permissions and
 // limitations under the license.
 
-package bufstring
+package example4
 
 import (
-	"arena_experiment/pkg/buffer"
+	// "arena_experiment/pkg/buffer"
+	// "testing"
 )
 
-type Person struct {
-	Name string
-	Age  int
+// 结构体中有结构体成员而非指针成员
+func Example4() {
+// 	buf := buffer.New()
+// 	defer buf.Free()
 
-	Parent *Person
+// 	// p1 := NewPerson(1, buf)
+// 	// p2 := NewPerson(2, buf)
+
+// 	p1.Friend = p2
 }
 
-func NewPerson(name string, age int, buf *buffer.Buffer) *Person {
-	p := buffer.Alloc[Person](buf)
-	p.Name = name
-	p.Age = age
-	return p
-}
+// func TestPointer(t *testing.T) {
+// 	buf := buffer.New()
+// 	defer buf.Free()
+
+// 	p1 := NewPerson(, buf)
+
+// 	// fatal error: unpinned Go pointer stored into non-Go memory !
+// 	p1.Friend = p2
+// }
