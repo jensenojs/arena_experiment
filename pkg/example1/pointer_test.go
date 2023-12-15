@@ -19,8 +19,7 @@ import (
 	"testing"
 )
 
-// 非法指针
-func Example1() {
+func Example() {
 	buf := buffer.New()
 	defer buf.Free()
 

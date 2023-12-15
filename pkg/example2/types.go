@@ -20,12 +20,36 @@ import (
 )
 
 type Person struct {
-	Id     constant.Value // can not alloc by buffer!
-	// Friend *Person
+	Id *BufConstant
 }
 
-func NewPerson(id constant.Value, buf *buffer.Buffer) *Person {
+func NewPerson(id *BufConstant, buf *buffer.Buffer) *Person {
 	p := buffer.Alloc[Person](buf)
 	p.Id = id
 	return p
+}
+
+type Person2 struct {
+	Id constant.Value // can not alloc by buffer!
+}
+
+func NewPerson2(id constant.Value, buf *buffer.Buffer) *Person2 {
+	p := buffer.Alloc[Person2](buf)
+	p.Id = id
+	return p
+}
+
+type BufConstant struct {
+	v *constant.Value
+}
+
+func NewBufConstant(value constant.Value) *BufConstant {
+	return &BufConstant{&value}
+}
+
+func (b *BufConstant) Get() constant.Value {
+	if b != nil && b.v != nil {
+		return *b.v
+	}
+	return nil
 }

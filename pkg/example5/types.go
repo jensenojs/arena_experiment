@@ -12,29 +12,20 @@
 // see the license for the specific language governing permissions and
 // limitations under the license.
 
-package example2
+package example5
 
 import (
 	"arena_experiment/pkg/buffer"
 	"go/constant"
-	"testing"
 )
 
-// 无法通过buffer alloc来获得的对象
-func Example() {
-	buf := buffer.New()
-	defer buf.Free()
-
-	id := NewBufConstant(constant.MakeInt64(1))
-
-	_ = NewPerson(id, buf)
+type Person struct {
+	Id     constant.Value // can not alloc by buffer!
+	Friend *Person
 }
 
-func TestConstantValue(t *testing.T) {
-	buf := buffer.New()
-	defer buf.Free()
-
-	id := constant.MakeInt64(1)
-	_ = NewPerson2(id, buf)
-	// fatal error: unpinned Go pointer stored into non-Go memory !
+func NewPerson(id constant.Value, buf *buffer.Buffer) *Person {
+	p := buffer.Alloc[Person](buf)
+	p.Id = id
+	return p
 }

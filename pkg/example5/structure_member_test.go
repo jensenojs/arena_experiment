@@ -12,7 +12,7 @@
 // see the license for the specific language governing permissions and
 // limitations under the license.
 
-package example4
+package example5
 
 import (
 	// "arena_experiment/pkg/buffer"
@@ -20,7 +20,7 @@ import (
 )
 
 // 结构体中有结构体成员而非指针成员
-func Example4() {
+func Example() {
 // 	buf := buffer.New()
 // 	defer buf.Free()
 

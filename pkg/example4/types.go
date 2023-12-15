@@ -16,16 +16,14 @@ package example4
 
 import (
 	"arena_experiment/pkg/buffer"
-	"go/constant"
 )
 
 type Person struct {
-	Id     constant.Value // can not alloc by buffer!
-	Friend *Person
+	name string
 }
 
-func NewPerson(id constant.Value, buf *buffer.Buffer) *Person {
+func NewPerson(name string, buf *buffer.Buffer) *Person {
 	p := buffer.Alloc[Person](buf)
-	p.Id = id
+	p.name = name
 	return p
 }

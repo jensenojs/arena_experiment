@@ -15,27 +15,24 @@
 package example3
 
 import (
-	// "arena_experiment/pkg/buffer"
-	// "testing"
+	"arena_experiment/pkg/buffer"
+	"testing"
 )
 
-// 字符串
-func Example3() {
-// 	buf := buffer.New()
-// 	defer buf.Free()
+func Example() {
+	buf := buffer.New()
+	defer buf.Free()
 
-// 	// p1 := NewPerson(1, buf)
-// 	// p2 := NewPerson(2, buf)
+	cols := IdentifierList{"a1", "a2"}
 
-// 	p1.Friend = p2
+	_ = NewAliasClause(cols, buf)
 }
 
-// func TestPointer(t *testing.T) {
-// 	buf := buffer.New()
-// 	defer buf.Free()
+func TestSlice(t *testing.T) {
+	buf := buffer.New()
+	defer buf.Free()
 
-// 	p1 := NewPerson(, buf)
+	cols := IdentifierList{"a1", "a2"}
 
-// 	// fatal error: unpinned Go pointer stored into non-Go memory !
-// 	p1.Friend = p2
-// }
+	_ = NewAliasClause2(cols, buf)
+}

@@ -12,42 +12,22 @@
 // see the license for the specific language governing permissions and
 // limitations under the license.
 
-package example3
+package example4
 
 import (
 	"arena_experiment/pkg/buffer"
+	"testing"
 )
 
-type Identifier string
+func Example() {
 
-type IdentifierList []Identifier
-
-type AliasClause struct {
-	Cols *BufIdentifierList
 }
 
-type BufIdentifierList struct {
-	l *IdentifierList
-}
+func TestString(t *testing.T) {
+	buf := buffer.New()
+	defer buf.Free()
 
-func NewBufIdentifierList(l IdentifierList) *BufIdentifierList {
-	return &BufIdentifierList{&l}
-}
+	_ = NewPerson("tom", buf)
 
-func NewAliasClause(cs IdentifierList, buf *buffer.Buffer) *AliasClause {
-	a := buffer.Alloc[AliasClause](buf)
-	bcs := NewBufIdentifierList(cs)
-	buf.Pin(bcs)
-	a.Cols = bcs
-	return a
-}
-
-type AliasClause2 struct {
-	Cols IdentifierList
-}
-
-func NewAliasClause2(cs IdentifierList, buf *buffer.Buffer) *AliasClause2 {
-	a := buffer.Alloc[AliasClause2](buf)
-	a.Cols = cs
-	return a
+	// fatal error: unpinned Go pointer stored into non-Go memory !
 }
